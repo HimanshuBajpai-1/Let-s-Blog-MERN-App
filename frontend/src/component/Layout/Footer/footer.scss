@@ -1,0 +1,36 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background-color: rgb(217, 217, 217);
+    padding: 20px;
+    justify-content: center;
+}
+.first{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    >div{
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        >a{
+            text-decoration: none;
+            color: rgb(255, 0, 255);
+            &:hover{
+                color: rgb(82, 28, 82);
+            }
+            >svg{
+                font-size: 30px;
+            }
+        }
+        
+    }
+}
+.second{
+    >span{
+        font-weight: bold;
+    }
+}
