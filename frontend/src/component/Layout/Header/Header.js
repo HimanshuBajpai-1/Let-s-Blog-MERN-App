@@ -12,7 +12,7 @@ const Header = () => {
             <img className='logo' src={logo} alt="logo" />
             <div className='links'>
                 <Link to={'/'}>Home</Link>
-                <Link to={'/featured'}>Featured</Link>
+                <Link to={'/blogs'}>Blogs</Link>
                 <Link to={'/about'}>About</Link>
                 <Link to={'/contact'}>Contact</Link>
             </div>
@@ -25,7 +25,7 @@ const Header = () => {
             </div>            
             <div className='links'>
                 <Link to={'/'}>Home</Link>
-                <Link to={'/featured'}>Featured</Link>
+                <Link to={'/blogs'}>Blogs</Link>
                 <Link to={'/about'}>About</Link>
                 <Link to={'/contact'}>Contact</Link>
             </div>            
