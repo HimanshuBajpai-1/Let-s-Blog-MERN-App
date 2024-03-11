@@ -29,3 +29,14 @@
         }
     }
 }
+
+@media screen and (max-width:300px) {
+    .blogCard{
+        height: 300px;
+        width: 250px;
+        gap: 21px;
+        >.content{
+            -webkit-line-clamp: 3;   
+        }
+    }
+}

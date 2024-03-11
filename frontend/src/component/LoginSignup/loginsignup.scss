@@ -1,0 +1,191 @@
+.loginSignupContainer{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    >.loginDiv{        
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.596),-2px -2px 5px rgba(0, 0, 0, 0.596);
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        >h1{
+            color: rgb(148,0,0);
+            text-decoration: underline;
+            text-align: center;
+        }
+        >form{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            >div{
+                display: flex;
+                position: relative;
+                align-items: center;
+                width: 100%;
+                >svg{
+                    color: rgb(148,0,0);
+                    left: 5px;
+                    font-size: 20px;
+                    position: absolute;
+                }
+                >input{
+                    height: 40px;
+                    width: 100%;
+                    padding-left: 30px;
+                    background-color: rgba(160, 158, 158, 0.409);
+                    border: none;
+                    color: rgb(19, 18, 18);
+                    font-size: 18px;
+                    outline-color: rgb(255, 1, 255);
+                }
+            }
+            >a{
+                color: red;                
+                align-self: flex-end;
+                &:hover{
+                    color: rgb(71, 0, 0);
+                }
+            }
+            >input[type='submit']{
+                height: 35px;
+                width: 120px;
+                background-color: rgb(22, 84, 208);
+                border: none;
+                color: white;
+                border-radius: 10px;
+                box-shadow: 2px 2px 4px blue;
+                font-size: 18px;
+                &:hover{
+                    transform: translateY(-3px);
+                    background-color: white;
+                    color: blue;
+                    border-color: blue;
+                    cursor: pointer;
+                }
+            }
+            >span{
+                color: red;                
+                align-self: flex-end;
+                cursor: pointer;
+                &:hover{
+                    color: rgb(71, 0, 0);
+                }
+            }
+        }        
+    }
+    >.RegisterDiv{
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.596),-2px -2px 5px rgba(0, 0, 0, 0.596);
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        >h1{
+            color: rgb(148,0,0);
+            text-decoration: underline;            
+            text-align: center;
+        }
+        >form{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            >div{
+                display: flex;
+                position: relative;
+                align-items: center;
+                width: 100%;
+                >svg{
+                    color: rgb(148,0,0);
+                    left: 5px;
+                    font-size: 20px;
+                    position: absolute;
+                }
+                >input{
+                    height: 40px;
+                    width: 100%;
+                    padding-left: 30px;
+                    background-color: rgba(160, 158, 158, 0.409);
+                    border: none;
+                    color: rgb(19, 18, 18);
+                    font-size: 18px;
+                    outline-color: rgb(255, 1, 255);
+                }
+                >input[type='file']{
+                    width: auto;
+                    padding-left: 0;
+                    height: 40px;
+                    margin-left: 5px;   
+                    &::file-selector-button {
+                        width: 100%;
+                        height: 100%;
+                      }                                   
+                }
+                >img{
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                }
+            }
+            >a{
+                color: red;                
+                align-self: flex-end;
+                &:hover{
+                    color: rgb(71, 0, 0);
+                }
+            }
+            >input[type='submit']{
+                height: 35px;
+                width: 120px;
+                background-color: rgb(22, 84, 208);
+                border: none;
+                color: white;
+                border-radius: 10px;
+                box-shadow: 2px 2px 4px blue;
+                font-size: 18px;
+                &:hover{
+                    transform: translateY(-3px);
+                    background-color: white;
+                    color: blue;
+                    border-color: blue;
+                    cursor: pointer;
+                }
+            }
+            >span{
+                color: red;                
+                align-self: flex-end;
+                cursor: pointer;
+                &:hover{
+                    color: rgb(71, 0, 0);
+                }
+            }
+        }   
+    }
+}
+
+.hidden{
+    display: none;
+}
+
+@media screen and (max-width:600px) {
+    .loginSignupContainer{
+        >.loginDiv{  
+            width: 90%;
+            >form{
+                width: 100%;    
+            }        
+        }
+        >.RegisterDiv{
+            width: 90%;
+            >form{
+                width: 100%;    
+            }   
+        }
+    }
+}
