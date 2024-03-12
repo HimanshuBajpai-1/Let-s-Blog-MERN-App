@@ -101,7 +101,9 @@ exports.forgetPasswordController = async (req,res,next) => {
         await user.save({validateBeforeSave:false});
 
         // generating url for reset password
-        const resetPasswordURL = `${req.protocol}://${req.get('host')}/password/reset/${resetToken}`;
+        // const resetPasswordURL = `${req.protocol}://${req.get('host')}/password/reset/${resetToken}`;
+        const resetPasswordURL = `http://localhost:3000/password/reset/${resetToken}`;
+
 
         const message = `your reset Password Token is: \n\n ${resetPasswordURL} \n\n if you have not requested for this email, then please ignore it.`
     
@@ -132,7 +134,7 @@ exports.resetPasswordController = async (req,res,next) => {
             return res.status(400).json({message:'reset Password Token is invalid or has been Expired'});
         }
         if(req.body.password!==req.body.confirmPassword){
-            return next(new ErrorHandler('password does not match',400));
+            return res.status(500).json({message:'Password Does not Match'});
         }
         user.password = req.body.password;
         user.resetPasswordToken = undefined;
@@ -140,7 +142,7 @@ exports.resetPasswordController = async (req,res,next) => {
 
         await user.save();
     
-        getToken(user,200,res);
+        res.status(200).json({message:'Password Changed Successfully'});
     } catch (error) {
         return res.status(500).json({message:error.message});
     }

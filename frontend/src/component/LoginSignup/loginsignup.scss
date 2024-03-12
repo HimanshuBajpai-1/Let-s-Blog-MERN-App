@@ -11,6 +11,7 @@
         flex-direction: column;
         align-items: center;
         padding: 20px;
+        gap: 40px;
         >h1{
             color: rgb(148,0,0);
             text-decoration: underline;
@@ -68,6 +69,17 @@
                     cursor: pointer;
                 }
             }
+            >.submit{
+                height: 35px;
+                width: 120px;
+                border: none;
+                color: rgb(22, 84, 208);
+                border-radius: 10px;
+                box-shadow: 2px 2px 4px blue,-2px -2px 4px blue;
+                font-size: 18px;
+                background-color: white;
+                cursor: not-allowed;
+            }
             >span{
                 color: red;                
                 align-self: flex-end;
@@ -85,6 +97,7 @@
         flex-direction: column;
         align-items: center;
         padding: 20px;
+        gap: 40px;
         >h1{
             color: rgb(148,0,0);
             text-decoration: underline;            
@@ -156,6 +169,17 @@
                     border-color: blue;
                     cursor: pointer;
                 }
+            }
+            >.submit{
+                height: 35px;
+                width: 120px;
+                border: none;
+                color: rgb(22, 84, 208);
+                border-radius: 10px;
+                box-shadow: 2px 2px 4px blue,-2px -2px 4px blue;
+                font-size: 18px;
+                background-color: white;
+                cursor: not-allowed;
             }
             >span{
                 color: red;                

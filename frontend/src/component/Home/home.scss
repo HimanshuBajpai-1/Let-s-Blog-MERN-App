@@ -40,8 +40,8 @@
     }   
     &::after{
         content: '';
-        height: 100.3vh;
-        width: calc(100% + 1px);
+        height: 100.3vh;    
+        width: 100%;
         position: absolute;
         background-color: white;
         clip-path: polygon(100% 71%, 0 100%, 100% 100%);
