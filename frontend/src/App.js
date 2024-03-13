@@ -3,7 +3,7 @@ import axios from 'axios';
 import {BrowserRouter ,Routes ,Route} from 'react-router-dom';
 import {Toaster} from 'react-hot-toast';
 import {useDispatch } from 'react-redux'
-import {setUserDetail} from './Reducers/UserReducer/getUserDetailsReducer'
+import {setUserDetail ,notFound} from './Reducers/UserReducer/getUserDetailsReducer'
 import toast from 'react-hot-toast';
 import Header from './component/Layout/Header/Header';
 import Footer from './component/Layout/Footer/Footer';
@@ -11,9 +11,13 @@ import Home from './component/Home/Home';
 import LoginSignup from './component/LoginSignup/LoginSignup';
 import ForgotPassword from './component/ForgotPassword/ForgotPassword';
 import ResetPassword from './component/ResetPassword/ResetPassword';
+import CreateBlog from './component/CreateBlog/CreateBlog';
+import MyBlogs from './component/MyBlogs/MyBlogs';
+import AllBlogs from './component/AllBlogs/AllBlogs';
 
 
 const App = () => {
+
   const dispatch = useDispatch();
   useEffect(()=>{
     const getDetails = async () => {
@@ -21,6 +25,7 @@ const App = () => {
         const response = await axios.get('/api/v1/me');
         dispatch(setUserDetail(response.data.user));
       } catch (error) {
+        dispatch(notFound());
         toast.error(error?.response?.data?.message || error.message);
       }
     }
@@ -36,10 +41,13 @@ const App = () => {
         <Route path='/login' element={<LoginSignup />}/>
         <Route path='/password/forgot' element={<ForgotPassword />}/>
         <Route path='/password/reset/:token' element={<ResetPassword />}/>
+        <Route path='/blog/new' element={<CreateBlog />}/>        
+        <Route path='/blogs/me' element={<MyBlogs />}/>
+        <Route path='/blogs' element={<AllBlogs />}/>        
       </Routes>
       <Footer />
     </BrowserRouter>
   )
 }
 
-export default App
+export default App;

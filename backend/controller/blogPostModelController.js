@@ -14,12 +14,13 @@ exports.createBlogPost = async (req,res,next) => {
 // getting all my blogs
 exports.getMyBlogs = async (req,res,next) => {
     try {
-        const blogsPerPage = 4;
+        const blogsPerPage = 6;
         const page = req.query.page || 1;
-        const keyword = req.query.keyword || "";
-        const blogsCount = await Blog.countDocuments();        
-        const blogs = await Blog.find({createdBY:req.user._id , title:{$regex:keyword,$options:'i'}}).skip(blogsPerPage*(page-1)).limit(blogsPerPage).populate('createdBY');
-        res.status(201).json({success:true,blogs,blogsCount});
+        const keyword = req.query.keyword || ""; 
+        const dummy = await Blog.find({createdBY:req.user._id , title:{$regex:keyword,$options:'i'}});       
+        const blogsCount = dummy.length;    
+        const blogs = await Blog.find({createdBY:req.user._id , title:{$regex:keyword,$options:'i'}}).sort({createdOn:-1}).skip(blogsPerPage*(page-1)).limit(blogsPerPage).populate('createdBY');
+        res.status(201).json({success:true,blogs,blogsCount,blogsPerPage});
     } catch (error) {
         res.status(500).json({message:error.message});
     }
@@ -38,6 +39,17 @@ exports.updateMyBlog = async (req,res,next) => {
     }
 }
 
+// get blog by Id
+
+exports.getBlog = async (req,res,next) => {
+    try {
+        const {id} = req.params;
+        const blog = await Blog.findById(id)            
+        res.status(200).json({success:true,blog});
+    } catch (error) {
+        res.status(500).json({message:error.message});
+    }
+}
 
 // deleting my blog
 exports.deleteBlog = async (req,res,next) => {
@@ -50,13 +62,27 @@ exports.deleteBlog = async (req,res,next) => {
     }
 }
 
+// getting featured Blogs
+
+exports.getFeaturedBlogs = async (req,res,next) => {
+    try {
+        const blogs = await Blog.find().sort({likes:-1}).limit(6);            
+        res.status(200).json({success:true,blogs});
+    } catch (error) {
+        res.status(500).json({message:error.message});
+    }
+}
 
 // getting all blogs --admin
 exports.getAllBlogs = async (req,res,next) => {
     try {
-        const blogsCount = await Blog.countDocuments();
-        const blogs = await Blog.find();
-        res.status(200).json({success:true,blogs,blogsCount})
+        const blogsPerPage = 6;
+        const page = req.query.page || 1;
+        const keyword = req.query.keyword || ""; 
+        const dummy = await Blog.find({title:{$regex:keyword,$options:'i'}});       
+        const blogsCount = dummy.length;    
+        const blogs = await Blog.find({title:{$regex:keyword,$options:'i'}}).sort({createdOn:-1}).skip(blogsPerPage*(page-1)).limit(blogsPerPage).populate('createdBY');
+        res.status(201).json({success:true,blogs,blogsCount,blogsPerPage});
     } catch (error) {
         res.status(500).json({message:error.message});
     }

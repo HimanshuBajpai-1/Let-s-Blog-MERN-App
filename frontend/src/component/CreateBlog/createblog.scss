@@ -1,0 +1,82 @@
+.createNewBlogContainer{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    >.mainblogcontainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 2px 2px 5px black,-2px -2px 5px black;
+        gap: 20px;
+        width: 500px;
+        padding: 20px;
+        >h1{
+            text-align: center;
+            color: rgb(48, 48, 48);
+        }
+        >form{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            >input{
+                height: 40px;
+                font-size: 18px;
+                background-color: rgba(188, 188, 188, 0.534);
+                padding-left: 10px;
+                border: none;
+                &::placeholder{
+                    color: rgb(10, 0, 9);
+                }
+            }
+            >input[type='file']{
+                padding: 0;
+                &::file-selector-button{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            >.blogImgPreview{
+                width: 100%;
+                height: 200px;
+                object-fit: contain;
+            }
+            >.textarea{
+                border: 2px solid;
+            }
+            .ql-container{
+                min-height: 100px;
+            }
+            >.blogSubmit{
+                height: 40px;
+                width: 200px;
+                font-size: 18px;
+                align-self: center;
+                border: none;
+                border-radius: 10px;
+                color: white;
+                background: linear-gradient(90deg,rgb(43, 0, 255),rgb(0, 242, 255));
+                &:hover{
+                    border: 1px solid blue;
+                    background: rgb(60, 76, 251);
+                }
+            }
+            >.disabled{
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:600px){
+    .createNewBlogContainer{
+        padding: 0;        
+        >.mainblogcontainer{
+            box-shadow: none;
+            width: 100%;
+            padding: 10px;            
+        }
+    }
+}

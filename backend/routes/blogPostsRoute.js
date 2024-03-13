@@ -1,13 +1,16 @@
 const express = require('express');
 const {isAuthenticated, isAdmin} = require('../middleware/auth')
-const {createBlogPost, getMyBlogs, deleteBlog, updateMyBlog, getAllBlogs, getBlogsById, deleteBlogById} = require('../controller/blogPostModelController');
+const {createBlogPost, getMyBlogs, getBlog, deleteBlog, updateMyBlog, getAllBlogs, getBlogsById, deleteBlogById, getFeaturedBlogs} = require('../controller/blogPostModelController');
 
 const route = express.Router();
 
 route.post('/blogpost/new',isAuthenticated,createBlogPost);
 route.get('/blogs/me',isAuthenticated,getMyBlogs);
 route.put('/blog/update/:id',isAuthenticated,updateMyBlog);
+route.get('/blog/:id',isAuthenticated,getBlog);
 route.delete('/blog/:id',isAuthenticated,deleteBlog);
+route.get('/blogs',getAllBlogs);
+route.get('/featuredblog',getFeaturedBlogs);
 
 // admin route
 

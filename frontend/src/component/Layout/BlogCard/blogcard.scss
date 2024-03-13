@@ -18,10 +18,7 @@
     >.content{
         height: 150px;
         overflow: hidden;
-        letter-spacing: 1px;
-        display: -webkit-box;
-        -webkit-line-clamp: 6;   
-        -webkit-box-orient: vertical;
+        letter-spacing: 1px;   
     }
     >div{
         >span{
@@ -35,8 +32,5 @@
         height: 300px;
         width: 250px;
         gap: 21px;
-        >.content{
-            -webkit-line-clamp: 3;   
-        }
     }
 }

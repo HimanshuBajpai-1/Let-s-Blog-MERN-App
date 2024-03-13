@@ -24,9 +24,14 @@ const userDetails = createSlice({
             state.isAuthenticated =false;
             state.isAdmin = false;
             state.user = {}
+        },
+        notFound : (state) => {
+            state.loading = true;
+            state.isAuthenticated = false;
+            state.isAdmin = false;
         }
     }
 })
 
-export const {setUserDetail ,logOutUser} = userDetails.actions;
+export const {setUserDetail ,logOutUser ,notFound} = userDetails.actions;
 export default userDetails.reducer

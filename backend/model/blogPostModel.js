@@ -9,6 +9,25 @@ const blogPostSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    blogImage:{
+        public_id:{
+            type:String,
+            required:true
+        },
+        url:{
+            type:String,
+            required:true
+        }
+    },
+    likes:{
+        type:Number,
+        default:0
+    },
+    likedBy:[{
+        user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'user'
+    }}],
     createdBY:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'user',
