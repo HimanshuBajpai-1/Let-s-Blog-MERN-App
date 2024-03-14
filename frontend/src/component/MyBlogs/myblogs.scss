@@ -33,6 +33,25 @@
     gap: 40px;
     justify-content: center;
 }
+.blogsCards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    >.icons{
+        padding: 20px;
+        position: absolute;
+        bottom: 4px;
+        font-size: 20px;
+        color: rgb(128, 0, 21);
+        display: flex;
+        align-items: center;
+        gap: 200px;
+    }
+}
+
+
 .noBlogWarning{
     height: 100vh;
     width: 100%;

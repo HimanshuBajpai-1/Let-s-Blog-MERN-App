@@ -1,4 +1,12 @@
 const Blog = require('../model/blogPostModel');
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET 
+});
+
 
 // creating new blog
 exports.createBlogPost = async (req,res,next) => {
@@ -31,6 +39,10 @@ exports.getMyBlogs = async (req,res,next) => {
 exports.updateMyBlog = async (req,res,next) => {
     try {
         const {id} = req.params;
+        if(req.body.blogImage){
+            const b = await Blog.findById(id);
+            await cloudinary.uploader.destroy(b.blogImage.public_id);
+        } 
         req.body.updatedOn = Date.now()
         const blog = await Blog.findByIdAndUpdate(id,req.body,{runValidators:true,new:true});            
         res.status(200).json({success:true,blog,message:'Blog Updated Successfully'});
@@ -44,7 +56,7 @@ exports.updateMyBlog = async (req,res,next) => {
 exports.getBlog = async (req,res,next) => {
     try {
         const {id} = req.params;
-        const blog = await Blog.findById(id)            
+        const blog = await Blog.findById(id).populate('createdBY');            
         res.status(200).json({success:true,blog});
     } catch (error) {
         res.status(500).json({message:error.message});
@@ -55,7 +67,9 @@ exports.getBlog = async (req,res,next) => {
 exports.deleteBlog = async (req,res,next) => {
     try {
         const {id} = req.params;
-        await Blog.findByIdAndDelete(id)            
+        const blog = await Blog.findById(id);
+        await cloudinary.uploader.destroy(blog.blogImage.public_id);
+        await Blog.findByIdAndDelete(id);            
         res.status(200).json({success:true,message:'Blog Deleted Successfully'});
     } catch (error) {
         res.status(500).json({message:error.message});
@@ -68,6 +82,37 @@ exports.getFeaturedBlogs = async (req,res,next) => {
     try {
         const blogs = await Blog.find().sort({likes:-1}).limit(6);            
         res.status(200).json({success:true,blogs});
+    } catch (error) {
+        res.status(500).json({message:error.message});
+    }
+}
+
+// update likes
+
+exports.updateLike = async (req,res,next) =>{
+    try {
+        const {id} = req.params;
+        const blog = await Blog.findById(id).populate('createdBY');
+        const likeCount = blog.likes
+        const likeArr = blog.likedBy
+        if(likeArr.length){
+            const userIndex = likeArr.findIndex(i=>i.user.equals(req.user._id));
+            if(userIndex!==-1){
+                likeArr.splice(userIndex,1);
+                blog.likes -= 1;
+                blog.likedBy = likeArr;
+                blog.save();
+            }else{
+                blog.likes += 1
+                blog.likedBy.push({user : req.user._id});
+                blog.save();
+            } 
+        }else{
+            blog.likes += 1
+            blog.likedBy.push({user : req.user._id});
+            blog.save();
+        }                       
+        res.status(200).json({success:true,message:'like updated Successfully',blog});
     } catch (error) {
         res.status(500).json({message:error.message});
     }

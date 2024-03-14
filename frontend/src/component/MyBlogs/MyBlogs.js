@@ -8,6 +8,9 @@ import {setBlogList} from '../../Reducers/BlogReducer/getBlogsList'
 import BlogCard from '../Layout/BlogCard/BlogCard'
 import ResponsivePagination from 'react-responsive-pagination';
 import 'react-responsive-pagination/themes/classic.css';
+import { FaPencilAlt } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import toast from 'react-hot-toast';
 
 const MyBlogs = () => {
     const navigate  = useNavigate();
@@ -38,6 +41,18 @@ const MyBlogs = () => {
         }
     },[userLoading,isAuthenticated,navigate,dispatch,finalKeyword,currPage])
 
+    const blogEditHandler = (id) =>{
+        navigate(`/edit/blog/${id}`);
+    }
+
+    const blogDeleteHandler = async (id) => {
+        await axios.delete(`/api/v1/blog/${id}`);
+        toast.success('blog Deleted Successfully');
+        const response = await axios.get(`/api/v1/blogs/me?keyword=${finalKeyword}&&page=${currPage}`);
+        dispatch(setBlogList(response.data.blogs));
+        setTotalBlogs(response.data.blogsCount);
+        setBlogsPerPage(response.data.blogsPerPage);
+    }
 
   return (
     <>
@@ -51,7 +66,13 @@ const MyBlogs = () => {
                 </div>
                 <div className='myBlogsContainer'>
                     {
-                        blogs.map(i=><BlogCard id={i._id} title={i.title} blogBody={i.blogBody} author={i.createdBY.name} createdOn={i.createdOn} likes={i.likes}/>)
+                        blogs.map(i=><div className='blogsCards'>
+                            <BlogCard id={i._id} title={i.title} blogBody={i.blogBody} author={i.createdBY.name} createdOn={i.createdOn} likes={i.likes}/>
+                            <div className="icons">
+                                <FaPencilAlt onClick={()=>blogEditHandler(i._id)}/>
+                                <MdDelete onClick={()=>blogDeleteHandler(i._id)}/>
+                            </div>
+                        </div>)
                     }
                 </div>
                 <div className="paginationDiv">

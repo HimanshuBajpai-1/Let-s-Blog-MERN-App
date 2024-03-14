@@ -12,7 +12,7 @@ const blogList = createSlice({
         setBlogList : (state , action) =>{
             state.loading = true;            
             state.blogs = action.payload;
-        }        
+        }      
     }
 })
 

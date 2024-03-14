@@ -14,6 +14,8 @@ import ResetPassword from './component/ResetPassword/ResetPassword';
 import CreateBlog from './component/CreateBlog/CreateBlog';
 import MyBlogs from './component/MyBlogs/MyBlogs';
 import AllBlogs from './component/AllBlogs/AllBlogs';
+import BlogDetail from './component/BlogDetail.js/BlogDetail';
+import EditBlog from './component/EditBlog/EditBlog';
 
 
 const App = () => {
@@ -43,7 +45,9 @@ const App = () => {
         <Route path='/password/reset/:token' element={<ResetPassword />}/>
         <Route path='/blog/new' element={<CreateBlog />}/>        
         <Route path='/blogs/me' element={<MyBlogs />}/>
-        <Route path='/blogs' element={<AllBlogs />}/>        
+        <Route path='/blogs' element={<AllBlogs />}/>
+        <Route path='/get/blog/:id' element={<BlogDetail />}/>  
+        <Route path='/edit/blog/:id' element={<EditBlog />}/>        
       </Routes>
       <Footer />
     </BrowserRouter>

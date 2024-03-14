@@ -53,7 +53,7 @@ const Home = () => {
                 <div className='featureCard'>
                     <TfiWrite />
                     <div>Create Your Own Blogs</div>
-                    <Link to={'/login'}>Try Now</Link>
+                    <Link to={'/blog/new'}>Try Now</Link>
                 </div>
                 <div className='featureCard'>  
                     <FaBookOpenReader />                  
