@@ -3,6 +3,14 @@ const {getToken} = require('../utils/getToken');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
 
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET 
+});
+
 // Register User
 exports.registerController = async (req,res,next) =>{
     try {
@@ -58,6 +66,10 @@ exports.profileDetailController = async (req,res,next) => {
 // Update Profile
 exports.profileUpdate = async (req,res,next) => {
     try {
+        if(req.body.avatar){
+            const b = await User.findById(req.user._id);
+            await cloudinary.uploader.destroy(b.avatar.public_id);
+        } 
         const user = await User.findByIdAndUpdate(req.user._id,req.body,{runValidators: true,new:true});
         getToken(user,200,res);
     } catch (error) {

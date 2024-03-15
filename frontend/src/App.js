@@ -16,6 +16,9 @@ import MyBlogs from './component/MyBlogs/MyBlogs';
 import AllBlogs from './component/AllBlogs/AllBlogs';
 import BlogDetail from './component/BlogDetail.js/BlogDetail';
 import EditBlog from './component/EditBlog/EditBlog';
+import Account from './component/Account/Account';
+import UpdatePassword from './component/UpdatePassword/UpdatePassword';
+import UpdateProfile from './component/UpdateProfile/UpdateProfile';
 
 
 const App = () => {
@@ -47,7 +50,10 @@ const App = () => {
         <Route path='/blogs/me' element={<MyBlogs />}/>
         <Route path='/blogs' element={<AllBlogs />}/>
         <Route path='/get/blog/:id' element={<BlogDetail />}/>  
-        <Route path='/edit/blog/:id' element={<EditBlog />}/>        
+        <Route path='/edit/blog/:id' element={<EditBlog />}/>
+        <Route path='/account' element={<Account />}/>  
+        <Route path='/password/update' element={<UpdatePassword />}/>        
+        <Route path='/profile/update' element={<UpdateProfile />}/>        
       </Routes>
       <Footer />
     </BrowserRouter>
