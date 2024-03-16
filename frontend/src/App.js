@@ -19,6 +19,7 @@ import EditBlog from './component/EditBlog/EditBlog';
 import Account from './component/Account/Account';
 import UpdatePassword from './component/UpdatePassword/UpdatePassword';
 import UpdateProfile from './component/UpdateProfile/UpdateProfile';
+import Dashboard from './component/Dashboard/Dashboard';
 
 
 const App = () => {
@@ -53,7 +54,8 @@ const App = () => {
         <Route path='/edit/blog/:id' element={<EditBlog />}/>
         <Route path='/account' element={<Account />}/>  
         <Route path='/password/update' element={<UpdatePassword />}/>        
-        <Route path='/profile/update' element={<UpdateProfile />}/>        
+        <Route path='/profile/update' element={<UpdateProfile />}/>  
+        <Route path='/dashboard' element={<Dashboard />}/>        
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -20,7 +20,7 @@ exports.registerController = async (req,res,next) =>{
         return res.status(500).json({message:error.message})
     }
 }
-
+    
 // Login User
 exports.loginController = async (req,res,next) =>{
     try {
@@ -172,24 +172,6 @@ exports.getAllUserController = async (req,res,next) => {
     }
 }
 
-// Get user details --admin
-
-exports.getUserController = async (req,res,next) => {
-    try {
-        const {id}  = req.params;
-        const user = await User.findById(id);
-        if(!user){
-            return res.status(404).json({message:"User Not Found"})
-        }
-        res.status(200).json({success:true,user});
-    } catch (error) {
-        if(error.name==='CastError'){
-            return res.status(400).json({message:'Invalid ID Format'});
-        }
-        return res.status(500).json({message:error.message});
-    }
-}
-
 // Update User Role --admin
 exports.updateRoleController = async (req,res,next) => {
     try {
@@ -198,7 +180,8 @@ exports.updateRoleController = async (req,res,next) => {
         if(!user){
             return res.status(404).json({message:"User Not Found"})
         }
-        user.role = req.body;
+        console.log(req.body);
+        user.role = req.body.role; 
         user.save();
         res.status(200).json({success:true,user});
     } catch (error) {
@@ -216,7 +199,8 @@ exports.deleteUser = async (req,res,next) => {
         const user = await User.findById(id);
         if(!user){
             return res.status(404).json({message:"User Not Found"})
-        }
+        }        
+        await cloudinary.uploader.destroy(user.avatar.public_id);
         await User.findByIdAndDelete(id);
         res.status(200).json({success:true,message:"User Deleted Succesfully"});
     } catch (error) {

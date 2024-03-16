@@ -1,0 +1,47 @@
+.editRole{
+     display: flex;
+     align-items: center;
+     gap: 2px;
+     cursor: pointer;
+     color: red;
+}
+.adminUsersList{
+    width: 100%;
+    overflow-x: auto;
+    >table{
+        width: 100%;
+        >thead{
+            >tr{
+                >th{
+                    background-color: #b40784;
+                    color: white;
+                    padding: 15px;
+                    text-align: left;
+                }
+            }
+        }
+        >tbody{
+            >tr{
+                >td{
+                    background-color: #ccc;
+                    color: white;
+                    padding: 15px;
+                    text-align: left;
+                    color: black;
+                    >svg{
+                        font-size: 18px;
+                        color: red;
+                        &:hover{
+                            color: rgb(98, 0, 0);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.NoUser{
+    color: red;
+    font-size: 25px;    
+}

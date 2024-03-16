@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerController, loginController, profileDetailController, profileUpdate, passwordUpdate, getAllUserController, getUserController, updateRoleController, deleteUser, forgetPasswordController, resetPasswordController, logoutController } = require('../controller/userController');
+const { registerController, loginController, profileDetailController, profileUpdate, passwordUpdate, getAllUserController, updateRoleController, deleteUser, forgetPasswordController, resetPasswordController, logoutController } = require('../controller/userController');
 const {isAuthenticated, isAdmin} = require('../middleware/auth')
 const route = express.Router();
 
@@ -15,8 +15,7 @@ route.put('/password/reset/:token',resetPasswordController);
 
 
 // admin routes
-route.get('/admin/users',isAuthenticated,isAdmin,getAllUserController);  
-route.get('/admin/user/:id',isAuthenticated,isAdmin,getUserController);
+route.get('/admin/users',isAuthenticated,isAdmin,getAllUserController); 
 route.put('/admin/user/:id',isAuthenticated,isAdmin,updateRoleController);   
 route.delete('/admin/user/:id',isAuthenticated,isAdmin,deleteUser);
 
