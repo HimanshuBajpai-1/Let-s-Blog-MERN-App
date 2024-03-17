@@ -38,7 +38,9 @@ const Header = () => {
             <div className='links'>
                 <Link to={'/'}>Home</Link>
                 <Link to={'/blogs'}>Blogs</Link>
-                <Link to={'/about'}>About</Link>
+                {
+                    userLoading && isAuthenticated ? <Link to={'/blog/new'}>Create Blog</Link> : ""
+                }
                 <Link to={'/contact'}>Contact</Link>
             </div>
             {
@@ -77,7 +79,9 @@ const Header = () => {
             <div className='links'>
                 <Link to={'/'}>Home</Link>
                 <Link to={'/blogs'}>Blogs</Link>
-                <Link to={'/about'}>About</Link>
+                {
+                    userLoading && isAuthenticated ? <Link to={'/blog/new'}>Create Blog</Link> : ""
+                }
                 <Link to={'/contact'}>Contact</Link>
             </div>            
         </nav>

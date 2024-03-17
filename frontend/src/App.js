@@ -9,7 +9,6 @@ import Header from './component/Layout/Header/Header';
 import Footer from './component/Layout/Footer/Footer';
 import Home from './component/Home/Home';
 import Contact from './component/Contact/Contact';
-import About from './component/About/About';
 import LoginSignup from './component/LoginSignup/LoginSignup';
 import ForgotPassword from './component/ForgotPassword/ForgotPassword';
 import ResetPassword from './component/ResetPassword/ResetPassword';
@@ -48,7 +47,6 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/contact' element={<Contact />}/>
-        <Route path='/about' element={<About />}/>
         <Route path='/login' element={<LoginSignup />}/>
         <Route path='/password/forgot' element={<ForgotPassword />}/>
         <Route path='/password/reset/:token' element={<ResetPassword />}/>
