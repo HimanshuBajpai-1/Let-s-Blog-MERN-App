@@ -8,6 +8,8 @@ import toast from 'react-hot-toast';
 import Header from './component/Layout/Header/Header';
 import Footer from './component/Layout/Footer/Footer';
 import Home from './component/Home/Home';
+import Contact from './component/Contact/Contact';
+import About from './component/About/About';
 import LoginSignup from './component/LoginSignup/LoginSignup';
 import ForgotPassword from './component/ForgotPassword/ForgotPassword';
 import ResetPassword from './component/ResetPassword/ResetPassword';
@@ -20,6 +22,7 @@ import Account from './component/Account/Account';
 import UpdatePassword from './component/UpdatePassword/UpdatePassword';
 import UpdateProfile from './component/UpdateProfile/UpdateProfile';
 import Dashboard from './component/Dashboard/Dashboard';
+import NotFound from './component/Layout/NotFound/NotFound';
 
 
 const App = () => {
@@ -44,6 +47,8 @@ const App = () => {
       <Header />  
       <Routes>
         <Route path='/' element={<Home />}/>
+        <Route path='/contact' element={<Contact />}/>
+        <Route path='/about' element={<About />}/>
         <Route path='/login' element={<LoginSignup />}/>
         <Route path='/password/forgot' element={<ForgotPassword />}/>
         <Route path='/password/reset/:token' element={<ResetPassword />}/>
@@ -55,11 +60,12 @@ const App = () => {
         <Route path='/account' element={<Account />}/>  
         <Route path='/password/update' element={<UpdatePassword />}/>        
         <Route path='/profile/update' element={<UpdateProfile />}/>  
-        <Route path='/dashboard' element={<Dashboard />}/>        
+        <Route path='/dashboard' element={<Dashboard />}/>  
+        <Route path='*' element={<NotFound />}/>        
       </Routes>
       <Footer />
     </BrowserRouter>
-  )
+  ) 
 }
 
 export default App;
