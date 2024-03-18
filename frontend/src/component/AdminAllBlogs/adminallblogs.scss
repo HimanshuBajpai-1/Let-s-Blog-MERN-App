@@ -1,0 +1,71 @@
+.editRole{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+    color: red;
+}
+
+.searchBar{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    >svg{
+        position: absolute;
+        left: 60px;
+        font-size: 25px;
+        color: red;
+    }
+    >input{
+        width: 300px;
+        height: 40px;
+        font-size: 18px;
+        padding-left: 20px;
+    }
+    >button{
+        width: 100px;
+        height: 30px;
+    }
+    
+}
+.adminBlogsList{
+   width: 100%;
+   overflow-x: auto;
+   >table{
+       width: 100%;
+       >thead{
+           >tr{
+               >th{
+                   background-color: #b40784;
+                   color: white;
+                   padding: 15px;
+                   text-align: left;
+               }
+           }
+       }
+       >tbody{
+           >tr{
+               >td{
+                   background-color: #ccc;
+                   color: white;
+                   padding: 15px;
+                   text-align: left;
+                   color: black;
+                   >svg{
+                       font-size: 18px;
+                       color: red;
+                       &:hover{
+                           color: rgb(98, 0, 0);
+                       }
+                   }
+               }
+           }
+       }
+   }
+}
+
+.NoBlogs{
+   color: red;
+   font-size: 25px;    
+}

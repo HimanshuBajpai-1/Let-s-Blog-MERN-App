@@ -6,7 +6,8 @@ import Loader from '../Layout/Loader/Loader';
 import {useSelector , useDispatch} from 'react-redux';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import {getAllUsersAdmin} from '../../Reducers/AdminReducer/getAllUserAdmin'
+import {getAllUsersAdmin} from '../../Reducers/AdminReducer/getAllUserAdmin';
+import {getAllBlogsAdmin} from '../../Reducers/AdminReducer/getAllBlogsAdmin'
 import {useNavigate} from 'react-router-dom'
 
 const Dashboard = () => { 
@@ -15,6 +16,7 @@ const Dashboard = () => {
         const navigate = useNavigate();
         const [loading ,setLoading ] = useState(true);
         const [totalUser , setTotalUser ] = useState(0);
+        const [totalBlogs , setTotalBlogs] = useState(0);
 
         const {loading:userLoading , isAuthenticated ,isAdmin} = useSelector((state)=>state.userDetails); 
         
@@ -31,8 +33,11 @@ const Dashboard = () => {
                 const fetchData = async ()=>{
                     try {
                         const response = await axios.get(`/api/v1/admin/users`);
+                        const respo = await axios.get(`/api/v1/admin/blogs`);
                         dispatch(getAllUsersAdmin(response.data.users));
+                        dispatch(getAllBlogsAdmin(respo.data.blogs))
                         setTotalUser(response.data.totalUser);
+                        setTotalBlogs(respo.data.blogsCount);
                     } catch (error) {
                         toast.error(error?.response?.data?.message || error.message);
                     }
@@ -48,14 +53,14 @@ const Dashboard = () => {
             loading ? <div className='dashboardConatiner'>
                 <div className='circleDiv'>
                     <div className='users circle'><span>Users</span><span>{totalUser}</span></div>
-                    <div className='blogs circle'><span>Blogs</span><span>{10000}</span></div>
+                    <div className='blogs circle'><span>Blogs</span><span>{totalBlogs}</span></div>
                 </div>
                 <div className='buttons'>
                     <button className={currentBtn ? 'active' : ''} onClick={()=>setCurrentBtn(true)}>Users</button>
                     <button className={currentBtn ? '' : 'active'} onClick={()=>setCurrentBtn(false)}>Blogs</button>
                 </div>
                 {
-                    currentBtn ? <AdminAllUsers setTotalUser={setTotalUser}/> : <AdminAllBlogs />
+                    currentBtn ? <AdminAllUsers setTotalUser={setTotalUser}/> : <AdminAllBlogs setTotalBlogs={setTotalBlogs}/>
                 }
             </div> : <Loader />
         }
