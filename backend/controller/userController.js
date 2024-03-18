@@ -113,8 +113,8 @@ exports.forgetPasswordController = async (req,res,next) => {
         await user.save({validateBeforeSave:false});
 
         // generating url for reset password
-        // const resetPasswordURL = `${req.protocol}://${req.get('host')}/password/reset/${resetToken}`;
-        const resetPasswordURL = `http://localhost:3000/password/reset/${resetToken}`;
+        const resetPasswordURL = `${req.protocol}://${req.get('host')}/password/reset/${resetToken}`;
+        // const resetPasswordURL = `http://localhost:3000/password/reset/${resetToken}`;
 
 
         const message = `your reset Password Token is: \n\n ${resetPasswordURL} \n\n if you have not requested for this email, then please ignore it.`
