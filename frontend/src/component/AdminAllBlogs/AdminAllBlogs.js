@@ -26,6 +26,10 @@ const AdminAllBlogs = ({setTotalBlogs}) => {
     }
 
     const searchHandler = async () =>{
+      if(userVal===''){
+        toast.error('Enter User ID');
+        return;
+      }
       try {
           setFilterSet(true);
           const response = await axios.get(`/api/v1/admin/blog/${userVal}`);
@@ -41,6 +45,7 @@ const AdminAllBlogs = ({setTotalBlogs}) => {
           setFilterSet(false);
           const response = await axios.get(`/api/v1/admin/blogs`);
           dispatch(getAllBlogsAdmin(response.data.blogs));
+          setUSerVal('')
       } catch (error) {
           toast.error(error?.response?.data?.message || error.message);
       }

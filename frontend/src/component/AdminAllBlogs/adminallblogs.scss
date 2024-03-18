@@ -69,3 +69,12 @@
    color: red;
    font-size: 25px;    
 }
+
+@media screen and (max-width:600px){
+    .searchBar{
+        justify-content: center;
+        >svg{
+            left: 10px;
+        }
+    }    
+}
