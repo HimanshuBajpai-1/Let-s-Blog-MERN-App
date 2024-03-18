@@ -2,6 +2,7 @@ const express = require('express');
 var cookieParser = require('cookie-parser')
 const app = express ();
 const cors = require('cors');
+const path = require('path');
 
 const dotenv = require('dotenv');
 
@@ -19,5 +20,9 @@ const user = require('./routes/userRoute');
 app.use('/api/v1',blogPosts);
 app.use('/api/v1',user);
 
+app.use(express.static(path.join(__dirname , '../frontend/build')))
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname , '../frontend/build/index.html'));
+})
 
 module.exports = app;
